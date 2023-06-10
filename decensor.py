@@ -7,7 +7,7 @@ import sys
 import numpy as np
 from PIL import Image
 
-from predict import run_predictions
+from predict import predict
 
 sys.path.append("DeepCreamPy/libs")
 from utils import find_regions, image_to_array, expand_bounding
@@ -53,8 +53,6 @@ def decensor(ori: Image, colored: Image, is_mosaic: bool):
         return ori
 
     output_img_array = ori_array[0].copy()
-    prediction_requests = []
-    bounding_boxes = []
     for region in regions:
         bounding_box = expand_bounding(ori, region, expand_factor=1.5)
         crop_img = ori.crop(bounding_box)
@@ -82,15 +80,8 @@ def decensor(ori: Image, colored: Image, is_mosaic: bool):
         # Normalize.
         crop_img_array = crop_img_array * 2.0 - 1
 
-        # Queue prediction request.
-        bounding_boxes.append(bounding_box)
-        prediction_requests.append([crop_img_array, mask_array])
-
-    # Run predictions for this batch of images.
-    predictions = run_predictions(prediction_requests, is_mosaic)
-
-    # Apply predictions.
-    for pred_img_array, bounding_box, region in zip(predictions, bounding_boxes, regions):
+        # Run prediction.
+        pred_img_array = predict(crop_img_array, mask_array, is_mosaic)
         pred_img_array = (255.0 * ((pred_img_array + 1.0) / 2.0)).astype(np.uint8)
 
         # scale prediction image back to original size
