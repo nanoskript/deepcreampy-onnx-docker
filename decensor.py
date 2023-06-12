@@ -23,7 +23,7 @@ def find_mask(colored):
     return mask
 
 
-# TODO: Profile memory usage.
+# TODO: Improve sequential performance.
 def decensor(ori: Image, colored: Image, is_mosaic: bool):
     # save the alpha channel if the image has an alpha channel
     has_alpha = False

@@ -13,7 +13,7 @@ RUN pip install gdown
 RUN gdown 1IMwzqZUuRnTv5jcuKdvZx-RZweknww5x -O models.zip
 RUN unzip "models.zip" && mv "09-11-2019 DCPv2 model" models
 
-RUN pdm sync -G tensorflow-cpu -G generate-onnx
+RUN pdm sync -G generate-onnx
 
 # Build ONNX models.
 ADD ./vendor/ ./vendor/
@@ -22,10 +22,12 @@ RUN pdm run generate-onnx.py
 
 FROM base
 
+RUN apt-get update && apt-get install -y git cmake g++
+RUN OCOS_NO_OPENCV=1 pdm sync -G server && pdm cache clear
+
 ADD ./DeepCreamPy ./DeepCreamPy
 COPY --from=builder ./vendor/ ./vendor/
 
-RUN pdm sync -G tensorflow-cpu -G server && pdm cache clear
 ADD ./server.py ./decensor.py ./predict.py ./
 
 CMD ["pdm", "run", "uvicorn", \
