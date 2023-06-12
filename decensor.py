@@ -4,13 +4,14 @@ Cleaned from: DeepCreamPy/decensor.py
 
 import sys
 
+import scipy
 import numpy as np
 from PIL import Image
 
 from predict import predict
 
 sys.path.append("DeepCreamPy/libs")
-from utils import find_regions, image_to_array, expand_bounding
+from utils import image_to_array, expand_bounding
 
 # Green.
 MASK_COLOR = [0, 1, 0]
@@ -23,7 +24,20 @@ def find_mask(colored):
     return mask
 
 
-# TODO: Improve sequential performance.
+# Performant connected-components algorithm.
+def find_regions(image, mask_color):
+    pixels = np.array(image)
+    array = np.all(pixels == mask_color, axis=2)
+    labeled, n_components = scipy.ndimage.measurements.label(array)
+    indices = np.moveaxis(np.indices(array.shape), 0, -1)[:, :, [1, 0]]
+
+    regions = []
+    for index in range(1, n_components + 1):
+        regions.append(indices[labeled == index].tolist())
+    regions.sort(key=len, reverse=True)
+    return regions
+
+
 def decensor(ori: Image, colored: Image, is_mosaic: bool):
     # save the alpha channel if the image has an alpha channel
     has_alpha = False
@@ -34,8 +48,6 @@ def decensor(ori: Image, colored: Image, is_mosaic: bool):
         ori = ori.convert('RGB')
 
     ori_array = image_to_array(ori)
-    ori_array = np.expand_dims(ori_array, axis=0)
-
     if is_mosaic:
         # if mosaic decensor, mask is empty
         colored = colored.convert('RGB')
@@ -43,7 +55,8 @@ def decensor(ori: Image, colored: Image, is_mosaic: bool):
         color_array = np.expand_dims(color_array, axis=0)
         mask = find_mask(color_array)
     else:
-        mask = find_mask(ori_array)
+        ori_array_mask = np.expand_dims(ori_array, axis=0)
+        mask = find_mask(ori_array_mask)
 
     # colored image is only used for finding the regions
     regions = find_regions(colored.convert('RGB'), [v * 255 for v in MASK_COLOR])
@@ -52,7 +65,7 @@ def decensor(ori: Image, colored: Image, is_mosaic: bool):
         print("No green (0,255,0) regions detected! Make sure you're using exactly the right color.")
         return ori
 
-    output_img_array = ori_array[0].copy()
+    output_img_array = ori_array.copy()
     for region in regions:
         bounding_box = expand_bounding(ori, region, expand_factor=1.5)
         crop_img = ori.crop(bounding_box)
@@ -92,17 +105,12 @@ def decensor(ori: Image, colored: Image, is_mosaic: bool):
         pred_img = Image.fromarray(pred_img_array.astype('uint8'))
         pred_img = pred_img.resize((bounding_width, bounding_height), resample=Image.BICUBIC)
         pred_img_array = image_to_array(pred_img)
-        pred_img_array = np.expand_dims(pred_img_array, axis=0)
 
-        # copy the decensored regions into the output image
-        for i in range(len(ori_array)):
-            for col in range(bounding_width):
-                for row in range(bounding_height):
-                    bounding_width_index = col + bounding_box[0]
-                    bounding_height_index = row + bounding_box[1]
-                    if (bounding_width_index, bounding_height_index) in region:
-                        output_img_array[bounding_height_index][bounding_width_index] \
-                            = pred_img_array[i, :, :, :][row][col]
+        # Efficiently copy regions into output image.
+        for (x, y) in region:
+            if bounding_box[0] <= x < bounding_box[0] + bounding_width:
+                if bounding_box[1] <= y < bounding_box[1] + bounding_height:
+                    output_img_array[y][x] = pred_img_array[y - bounding_box[1]][x - bounding_box[0]]
 
     output_img_array = output_img_array * 255.0
 
