@@ -5,9 +5,9 @@ Cleaned from: DeepCreamPy/decensor.py
 import sys
 from multiprocessing.pool import ThreadPool
 
-import scipy
 import numpy as np
 from PIL import Image
+from scipy.ndimage import measurements
 
 from predict import predict
 
@@ -29,7 +29,7 @@ def find_mask(colored):
 def find_regions(image, mask_color):
     pixels = np.array(image)
     array = np.all(pixels == mask_color, axis=2)
-    labeled, n_components = scipy.ndimage.measurements.label(array)
+    labeled, n_components = measurements.label(array)
     indices = np.moveaxis(np.indices(array.shape), 0, -1)[:, :, [1, 0]]
 
     regions = []
