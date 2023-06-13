@@ -2,19 +2,19 @@
 [project]
 requires-python = ">=3.10,<3.11"
 dependencies = [
-    "tensorflow-macos>=2.12.0 ; platform_system == 'Darwin'",
-    "tensorflow-aarch64>=2.12.0 ; platform_machine == 'aarch64'",
-    "tensorflow-cpu>=2.12.0 ; platform_system != 'Darwin' and platform_machine != 'aarch64'",
 ]
 
 [project.optional-dependencies]
 generate-onnx = [
     "tf2onnx>=1.14.0",
+    "tensorflow-macos>=2.12.0 ; platform_system == 'Darwin'",
+    "tensorflow-aarch64>=2.12.0 ; platform_machine == 'aarch64'",
+    "tensorflow-cpu>=2.12.0 ; platform_system != 'Darwin' and platform_machine != 'aarch64'",
 ]
 server = [
     "pillow>=9.5.0",
+    "scikit-image>=0.21.0",
     "onnxruntime>=1.15.0",
-    "onnxruntime-extensions @ git+https://github.com/microsoft/onnxruntime-extensions.git",
     "fastapi>=0.96.0",
     "uvicorn[standard]>=0.22.0",
     "python-multipart>=0.0.6",

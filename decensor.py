@@ -3,6 +3,7 @@ Cleaned from: DeepCreamPy/decensor.py
 """
 
 import sys
+from multiprocessing.pool import ThreadPool
 
 import scipy
 import numpy as np
@@ -65,8 +66,7 @@ def decensor(ori: Image, colored: Image, is_mosaic: bool):
         print("No green (0,255,0) regions detected! Make sure you're using exactly the right color.")
         return ori
 
-    output_img_array = ori_array.copy()
-    for region in regions:
+    def predict_region(region):
         bounding_box = expand_bounding(ori, region, expand_factor=1.5)
         crop_img = ori.crop(bounding_box)
 
@@ -93,10 +93,17 @@ def decensor(ori: Image, colored: Image, is_mosaic: bool):
         # Normalize.
         crop_img_array = crop_img_array * 2.0 - 1
 
-        # Run prediction.
+        # Queue prediction request.
         pred_img_array = predict(crop_img_array, mask_array, is_mosaic)
         pred_img_array = (255.0 * ((pred_img_array + 1.0) / 2.0)).astype(np.uint8)
+        return pred_img_array, bounding_box
 
+    # Run predictions.
+    with ThreadPool() as pool:
+        results = pool.map(predict_region, regions)
+
+    output_img_array = ori_array.copy()
+    for (pred_img_array, bounding_box), region in zip(results, regions):
         # scale prediction image back to original size
         bounding_width = bounding_box[2] - bounding_box[0]
         bounding_height = bounding_box[3] - bounding_box[1]

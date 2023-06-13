@@ -170,6 +170,16 @@ requires_python = ">=3.5"
 summary = "Internationalized Domain Names in Applications (IDNA)"
 
 [[package]]
+name = "imageio"
+version = "2.31.1"
+requires_python = ">=3.7"
+summary = "Library for reading and writing a wide range of image, video, scientific, and volumetric data formats."
+dependencies = [
+    "numpy",
+    "pillow>=8.3.2",
+]
+
+[[package]]
 name = "jax"
 version = "0.4.12"
 requires_python = ">=3.8"
@@ -186,6 +196,12 @@ name = "keras"
 version = "2.12.0"
 requires_python = ">=3.8"
 summary = "Deep learning for humans."
+
+[[package]]
+name = "lazy-loader"
+version = "0.2"
+requires_python = ">=3.7"
+summary = "lazy_loader"
 
 [[package]]
 name = "libclang"
@@ -220,6 +236,12 @@ version = "1.3.0"
 summary = "Python library for arbitrary-precision floating-point arithmetic"
 
 [[package]]
+name = "networkx"
+version = "3.1"
+requires_python = ">=3.8"
+summary = "Python package for creating and manipulating graphs and networks"
+
+[[package]]
 name = "numpy"
 version = "1.23.5"
 requires_python = ">=3.8"
@@ -252,16 +274,6 @@ dependencies = [
     "packaging",
     "protobuf",
     "sympy",
-]
-
-[[package]]
-name = "onnxruntime-extensions"
-version = "0.9.0+1f0c76c"
-git = "https://github.com/microsoft/onnxruntime-extensions.git"
-revision = "1f0c76cefaa9359b9fc74ff4b9ed93214486205a"
-summary = "ONNXRuntime Extensions"
-dependencies = [
-    "onnx>=1.9.0",
 ]
 
 [[package]]
@@ -333,6 +345,15 @@ requires_python = ">=3.7"
 summary = "A streaming multipart parser for Python"
 
 [[package]]
+name = "pywavelets"
+version = "1.4.1"
+requires_python = ">=3.8"
+summary = "PyWavelets, wavelet transform module"
+dependencies = [
+    "numpy>=1.17.3",
+]
+
+[[package]]
 name = "pyyaml"
 version = "6.0"
 requires_python = ">=3.6"
@@ -367,6 +388,23 @@ requires_python = ">=3.6,<4"
 summary = "Pure-Python RSA implementation"
 dependencies = [
     "pyasn1>=0.1.3",
+]
+
+[[package]]
+name = "scikit-image"
+version = "0.21.0"
+requires_python = ">=3.8"
+summary = "Image processing in Python"
+dependencies = [
+    "PyWavelets>=1.1.1",
+    "imageio>=2.27",
+    "lazy-loader>=0.2",
+    "networkx>=2.8",
+    "numpy>=1.21.1",
+    "packaging>=21",
+    "pillow>=9.0.1",
+    "scipy>=1.8",
+    "tifffile>=2022.8.12",
 ]
 
 [[package]]
@@ -561,6 +599,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "tifffile"
+version = "2023.4.12"
+requires_python = ">=3.8"
+summary = "Read and write TIFF files"
+dependencies = [
+    "numpy",
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.6.3"
 requires_python = ">=3.7"
@@ -643,7 +690,7 @@ summary = "Module for decorators, wrappers and monkey patching."
 
 [metadata]
 lock_version = "4.1"
-content_hash = "sha256:feac78618d92f3b8f93f3937090b30ceece44bc91cb6c40446e0374e4b86d6d3"
+content_hash = "sha256:6c397adaeb9a649c592d5f9bb5488af315cf8390a8ac89c9521df4b7ea1150ab"
 
 [metadata.files]
 "absl-py 1.4.0" = [
@@ -913,11 +960,19 @@ content_hash = "sha256:feac78618d92f3b8f93f3937090b30ceece44bc91cb6c40446e0374e4
     {url = "https://files.pythonhosted.org/packages/8b/e1/43beb3d38dba6cb420cefa297822eac205a277ab43e5ba5d5c46faf96438/idna-3.4.tar.gz", hash = "sha256:814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4"},
     {url = "https://files.pythonhosted.org/packages/fc/34/3030de6f1370931b9dbb4dad48f6ab1015ab1d32447850b9fc94e60097be/idna-3.4-py3-none-any.whl", hash = "sha256:90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2"},
 ]
+"imageio 2.31.1" = [
+    {url = "https://files.pythonhosted.org/packages/c7/2e/b64e8fef676c698ef1ab9313767ff7c64e44e3b6fa1986031c1c0bf2f813/imageio-2.31.1.tar.gz", hash = "sha256:f8436a02af02fd63f272dab50f7d623547a38f0e04a4a73e2b02ae1b8b180f27"},
+    {url = "https://files.pythonhosted.org/packages/c7/b0/7b6c35b8636ed773325cdb6f5ac3cd36afba63d99e20ed59c521cf5018b4/imageio-2.31.1-py3-none-any.whl", hash = "sha256:4106fb395ef7f8dc0262d6aa1bb03daba818445c381ca8b7d5dfc7a2089b04df"},
+]
 "jax 0.4.12" = [
     {url = "https://files.pythonhosted.org/packages/91/06/00616821a40137a96ab8192473687dfbdc5dc87f6aa83c4f36630bc3f11f/jax-0.4.12.tar.gz", hash = "sha256:d2de9a2388ffe002f16506d3ad1cc6e34d7536b98948e49c7e05bbcfe8e57998"},
 ]
 "keras 2.12.0" = [
     {url = "https://files.pythonhosted.org/packages/d5/80/34e55d7e3ed9cf18020929460f969de1bf82cf2f509c639b358ae2b25618/keras-2.12.0-py2.py3-none-any.whl", hash = "sha256:35c39534011e909645fb93515452e98e1a0ce23727b55d4918b9c58b2308c15e"},
+]
+"lazy-loader 0.2" = [
+    {url = "https://files.pythonhosted.org/packages/0e/c9/acfefeec32fe7090430f515c2bd376da650414a3df0b466030dd56512def/lazy_loader-0.2.tar.gz", hash = "sha256:0edc7a5175c400acb108f283749951fefdadedeb00adcec6e88b974a9254f18a"},
+    {url = "https://files.pythonhosted.org/packages/a1/a8/c41f46b47a381bd60a40c0ef00d2fd1722b743b178f9c1cec0da949043de/lazy_loader-0.2-py3-none-any.whl", hash = "sha256:c35875f815c340f823ce3271ed645045397213f961b40ad0c0d395c3f5218eeb"},
 ]
 "libclang 16.0.0" = [
     {url = "https://files.pythonhosted.org/packages/14/e0/9e346b16a4017e29473940b33a94b3e21aea58191308fd104634cf7936f5/libclang-16.0.0-py2.py3-none-win_arm64.whl", hash = "sha256:bf4628fc4da7a1dd06a244f9b8e121c5ec68076a763c59d6b13cbb103acc935b"},
@@ -1007,6 +1062,10 @@ content_hash = "sha256:feac78618d92f3b8f93f3937090b30ceece44bc91cb6c40446e0374e4
 "mpmath 1.3.0" = [
     {url = "https://files.pythonhosted.org/packages/43/e3/7d92a15f894aa0c9c4b49b8ee9ac9850d6e63b03c9c32c0367a13ae62209/mpmath-1.3.0-py3-none-any.whl", hash = "sha256:a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c"},
     {url = "https://files.pythonhosted.org/packages/e0/47/dd32fa426cc72114383ac549964eecb20ecfd886d1e5ccf5340b55b02f57/mpmath-1.3.0.tar.gz", hash = "sha256:7a28eb2a9774d00c7bc92411c19a89209d5da7c4c9a9e227be8330a23a25b91f"},
+]
+"networkx 3.1" = [
+    {url = "https://files.pythonhosted.org/packages/a8/05/9d4f9b78ead6b2661d6e8ea772e111fc4a9fbd866ad0c81906c11206b55e/networkx-3.1-py3-none-any.whl", hash = "sha256:4f33f68cb2afcf86f28a45f43efc27a9386b535d567d2127f8f61d51dec58d36"},
+    {url = "https://files.pythonhosted.org/packages/fd/a1/47b974da1a73f063c158a1f4cc33ed0abf7c04f98a19050e80c533c31f0c/networkx-3.1.tar.gz", hash = "sha256:de346335408f84de0eada6ff9fafafff9bcda11f0a0dfaa931133debb146ab61"},
 ]
 "numpy 1.23.5" = [
     {url = "https://files.pythonhosted.org/packages/08/36/6589c7d5fc4fecda63de4453fefff7c58f6de2b1bb7dfbe7fa807bf85c46/numpy-1.23.5-cp39-cp39-win_amd64.whl", hash = "sha256:09b7847f7e83ca37c6e627682f145856de331049013853f344f37b0c9690e3df"},
@@ -1250,6 +1309,33 @@ content_hash = "sha256:feac78618d92f3b8f93f3937090b30ceece44bc91cb6c40446e0374e4
     {url = "https://files.pythonhosted.org/packages/2d/23/abcfad10c3348cb6358400f8adbc21b523bbc6c954494fd0974428068672/python_multipart-0.0.6.tar.gz", hash = "sha256:e9925a80bb668529f1b67c7fdb0a5dacdd7cbfc6fb0bff3ea443fe22bdd62132"},
     {url = "https://files.pythonhosted.org/packages/b4/ff/b1e11d8bffb5e0e1b6d27f402eeedbeb9be6df2cdbc09356a1ae49806dbf/python_multipart-0.0.6-py3-none-any.whl", hash = "sha256:ee698bab5ef148b0a760751c261902cd096e57e10558e11aca17646b74ee1c18"},
 ]
+"pywavelets 1.4.1" = [
+    {url = "https://files.pythonhosted.org/packages/02/15/89951f559601fb6755f2231558c33c1b9cbba9e8526906cbc258e27eb53d/PyWavelets-1.4.1-cp39-cp39-win_amd64.whl", hash = "sha256:88aa5449e109d8f5e7f0adef85f7f73b1ab086102865be64421a3a3d02d277f4"},
+    {url = "https://files.pythonhosted.org/packages/07/fe/90ab3b98dfeb2177e1b8c8ccdd4e777e35dfe0aa98723308bd8f1a97fd47/PyWavelets-1.4.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:754fa5085768227c4f4a26c1e0c78bc509a266d9ebd0eb69a278be7e3ece943c"},
+    {url = "https://files.pythonhosted.org/packages/0d/72/db0ef5ca311627f86de89a7af6055301c67490f4160e725cdbd32eea7700/PyWavelets-1.4.1-cp39-cp39-win32.whl", hash = "sha256:47cac4fa25bed76a45bc781a293c26ac63e8eaae9eb8f9be961758d22b58649c"},
+    {url = "https://files.pythonhosted.org/packages/13/e4/86bb218c7926e1da7a52e0696cab120a17c995933f08d8228d9aa83b44c5/PyWavelets-1.4.1-cp311-cp311-macosx_10_13_x86_64.whl", hash = "sha256:64c6bac6204327321db30b775060fbe8e8642316e6bff17f06b9f34936f88875"},
+    {url = "https://files.pythonhosted.org/packages/1d/5e/97ff80a20fb22f723f0c3f6f5f407b12579a560abf7c3a8087d052993dd9/PyWavelets-1.4.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ad987748f60418d5f4138db89d82ba0cb49b086e0cbb8fd5c3ed4a814cfb705e"},
+    {url = "https://files.pythonhosted.org/packages/1d/a1/0f9356779440aaaa35ff82479c40a094419f19ab94a3d5f49e090398959b/PyWavelets-1.4.1-cp311-cp311-win32.whl", hash = "sha256:7231461d7a8eb3bdc7aa2d97d9f67ea5a9f8902522818e7e2ead9c2b3408eeb1"},
+    {url = "https://files.pythonhosted.org/packages/2f/52/080267790e23a5186185f2c26d7b774cee754387d1bcb116c7a45f3546f6/PyWavelets-1.4.1-cp38-cp38-macosx_10_13_x86_64.whl", hash = "sha256:ab7da0a17822cd2f6545626946d3b82d1a8e106afc4b50e3387719ba01c7b966"},
+    {url = "https://files.pythonhosted.org/packages/34/c0/a121306b618af45ff7d769e1bd45ed3d6c798dc7f0094e0b56735388d96e/PyWavelets-1.4.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:030670a213ee8fefa56f6387b0c8e7d970c7f7ad6850dc048bd7c89364771b9b"},
+    {url = "https://files.pythonhosted.org/packages/35/12/f1a4f72b5d71497e4200e71e253cc747077d8570b55693faaa7b81fb6dff/PyWavelets-1.4.1-cp310-cp310-win_amd64.whl", hash = "sha256:91d3d393cffa634f0e550d88c0e3f217c96cfb9e32781f2960876f1808d9b45b"},
+    {url = "https://files.pythonhosted.org/packages/3e/fc/651024e8b6e69bef6def2cbe27d520309f4ffc56b8d4885ab7046e1edc6c/PyWavelets-1.4.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:da7b9c006171be1f9ddb12cc6e0d3d703b95f7f43cb5e2c6f5f15d3233fcf202"},
+    {url = "https://files.pythonhosted.org/packages/50/92/a78bf0c3d84afd9b17727cce122c3fdb3860a27bd67b32448c7e64301e7b/PyWavelets-1.4.1-cp310-cp310-macosx_10_13_x86_64.whl", hash = "sha256:d854411eb5ee9cb4bc5d0e66e3634aeb8f594210f6a1bed96dbed57ec70f181c"},
+    {url = "https://files.pythonhosted.org/packages/51/af/53bcfea50c24cedb202b0c072193af94a1a611b26ab360082791e455b43f/PyWavelets-1.4.1-cp310-cp310-win32.whl", hash = "sha256:67a0d28a08909f21400cb09ff62ba94c064882ffd9e3a6b27880a111211d59bd"},
+    {url = "https://files.pythonhosted.org/packages/5a/98/4549479a32972bdfdd5e75e168219e97f4dfaee535a8308efef7291e8398/PyWavelets-1.4.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:71ab30f51ee4470741bb55fc6b197b4a2b612232e30f6ac069106f0156342356"},
+    {url = "https://files.pythonhosted.org/packages/6c/92/7e900e574575358a5af6ad9f8378d889b1a21e2ba835bae9d0eb7efd505b/PyWavelets-1.4.1-cp38-cp38-win32.whl", hash = "sha256:de7cd61a88a982edfec01ea755b0740e94766e00a1ceceeafef3ed4c85c605cd"},
+    {url = "https://files.pythonhosted.org/packages/6e/d4/008dceeb95fafcf141f39393bdfc10921d0b62a325c2794ac533195a1eb3/PyWavelets-1.4.1.tar.gz", hash = "sha256:6437af3ddf083118c26d8f97ab43b0724b956c9f958e9ea788659f6a2834ba93"},
+    {url = "https://files.pythonhosted.org/packages/73/8c/6d50b8e2ee4d12373a63791ad742df1e30ddd5f0f8d1c000c5b6b3afb2c9/PyWavelets-1.4.1-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:578af438a02a86b70f1975b546f68aaaf38f28fb082a61ceb799816049ed18aa"},
+    {url = "https://files.pythonhosted.org/packages/88/4b/b2b2a6f51e47c091c221bfde976a01a7e5f20e7e5e6341b2b9c4db73d2ed/PyWavelets-1.4.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:058b46434eac4c04dd89aeef6fa39e4b6496a951d78c500b6641fd5b2cc2f9f4"},
+    {url = "https://files.pythonhosted.org/packages/94/73/4df43d2e18e68c7ea88177c1fa14a25b5813a51b4953dc94c21f2de039d5/PyWavelets-1.4.1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:3f19327f2129fb7977bc59b966b4974dfd72879c093e44a7287500a7032695de"},
+    {url = "https://files.pythonhosted.org/packages/9f/67/33b37d53da9d225301e30894db5083569aa670b446253b3906fc0e96119e/PyWavelets-1.4.1-cp39-cp39-macosx_10_13_x86_64.whl", hash = "sha256:23bafd60350b2b868076d976bdd92f950b3944f119b4754b1d7ff22b7acbf6c6"},
+    {url = "https://files.pythonhosted.org/packages/a0/32/eeeaa4de640a84e2cc35c25aea289367059abce0cac84a9987b139a2a25f/PyWavelets-1.4.1-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:d0e56cd7a53aed3cceca91a04d62feb3a0aca6725b1912d29546c26f6ea90426"},
+    {url = "https://files.pythonhosted.org/packages/a9/8f/f80ff31e73385b886c35fb9fb1377849f9c43a3c1195ed8dc8ed8dc1bd88/PyWavelets-1.4.1-cp38-cp38-win_amd64.whl", hash = "sha256:7ab8d9db0fe549ab2ee0bea61f614e658dd2df419d5b75fba47baa761e95f8f2"},
+    {url = "https://files.pythonhosted.org/packages/cd/c1/132756d0033b37f4013299ac048bf34d5094673712984edb9e90e8d8a179/PyWavelets-1.4.1-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:9cb5ca8d11d3f98e89e65796a2125be98424d22e5ada360a0dbabff659fca0fc"},
+    {url = "https://files.pythonhosted.org/packages/de/a1/cd8a30e061f858f219364554b19d4318276c677a51d956c55fb0b134e8b2/PyWavelets-1.4.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:875d4d620eee655346e3589a16a73790cf9f8917abba062234439b594e706784"},
+    {url = "https://files.pythonhosted.org/packages/e4/13/9a1632347677e1be27900d9dc922f19bc01440eb8b0c663cea63b35275fc/PyWavelets-1.4.1-cp311-cp311-win_amd64.whl", hash = "sha256:daf0aa79842b571308d7c31a9c43bc99a30b6328e6aea3f50388cd8f69ba7dbc"},
+    {url = "https://files.pythonhosted.org/packages/f3/66/2bbcad043383d7be3bca2155972adba1d06be3bc5536afbfa22f1cd99688/PyWavelets-1.4.1-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:231b0e0b1cdc1112f4af3c24eea7bf181c418d37922a67670e9bf6cfa2d544d4"},
+]
 "pyyaml 6.0" = [
     {url = "https://files.pythonhosted.org/packages/02/25/6ba9f6bb50a3d4fbe22c1a02554dc670682a07c8701d1716d19ddea2c940/PyYAML-6.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:f84fbc98b019fef2ee9a1cb3ce93e3187a6df0b2538a651bfb890254ba9f90b5"},
     {url = "https://files.pythonhosted.org/packages/08/f4/ffa743f860f34a5e8c60abaaa686f82c9ac7a2b50e5a1c3b1eb564d59159/PyYAML-6.0-cp39-cp39-win_amd64.whl", hash = "sha256:b3d267842bf12586ba6c734f89d1f5b871df0273157918b0ccefa29deb05c21c"},
@@ -1303,6 +1389,29 @@ content_hash = "sha256:feac78618d92f3b8f93f3937090b30ceece44bc91cb6c40446e0374e4
 "rsa 4.9" = [
     {url = "https://files.pythonhosted.org/packages/49/97/fa78e3d2f65c02c8e1268b9aba606569fe97f6c8f7c2d74394553347c145/rsa-4.9-py3-none-any.whl", hash = "sha256:90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7"},
     {url = "https://files.pythonhosted.org/packages/aa/65/7d973b89c4d2351d7fb232c2e452547ddfa243e93131e7cfa766da627b52/rsa-4.9.tar.gz", hash = "sha256:e38464a49c6c85d7f1351b0126661487a7e0a14a50f1675ec50eb34d4f20ef21"},
+]
+"scikit-image 0.21.0" = [
+    {url = "https://files.pythonhosted.org/packages/08/53/f28cfb52248665b42db7e45a36ffc3a304fef46b308e5065fe2046e78daf/scikit_image-0.21.0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:ec9bab6920ac43037d7434058b67b5778d42c60f67b8679239f48a471e7ed6f8"},
+    {url = "https://files.pythonhosted.org/packages/08/c0/8085c5fd2f7f7514a0c5031b666171d5828ac5b3c9cf5d0ecd19688d5407/scikit_image-0.21.0-cp311-cp311-win_amd64.whl", hash = "sha256:146c3824253eee9ff346c4ad10cb58376f91aefaf4a4bb2fe11aa21691f7de76"},
+    {url = "https://files.pythonhosted.org/packages/19/bd/a53569a0a698d925eb46dbea0bd3b6b62e7287a9ec88b5a03efa8ebd5b14/scikit_image-0.21.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:78b1e96c59cab640ca5c5b22c501524cfaf34cbe0cb51ba73bd9a9ede3fb6e1d"},
+    {url = "https://files.pythonhosted.org/packages/1d/c2/a54d5e6e2d6708e0722a1aaccef4b7cc1e6df6f76c8b4ce98cd6d0c332c3/scikit_image-0.21.0.tar.gz", hash = "sha256:b33e823c54e6f11873ea390ee49ef832b82b9f70752c8759efd09d5a4e3d87f0"},
+    {url = "https://files.pythonhosted.org/packages/20/54/06f821fd78c24f7047629dc4c8ed948101fc91fdf660ee3263d870220ae8/scikit_image-0.21.0-cp311-cp311-macosx_12_0_arm64.whl", hash = "sha256:a54720430dba833ffbb6dedd93d9f0938c5dd47d20ab9ba3e4e61c19d95f6f19"},
+    {url = "https://files.pythonhosted.org/packages/22/c3/c5f3c351d6337a18d07c3fb04475626c106cd3dc3d59b85ec50d07656db0/scikit_image-0.21.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:ff5719c7eb99596a39c3e1d9b564025bae78ecf1da3ee6842d34f6965b5f1474"},
+    {url = "https://files.pythonhosted.org/packages/2f/35/fb5f6a7d46c5dfcbb44d55cff39eb159e74752389097deee1af18a1447ce/scikit_image-0.21.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:8ef5d8d1099317b7b315b530348cbfa68ab8ce32459de3c074d204166951025c"},
+    {url = "https://files.pythonhosted.org/packages/31/cf/9e8e819a8d90fb74ec183a0c3e8e182587929845c93779f99439cd270f10/scikit_image-0.21.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:7e40dd102da14cdadc09210f930b4556c90ff8f99cd9d8bcccf9f73a86c44245"},
+    {url = "https://files.pythonhosted.org/packages/32/b2/1811645651153407f1e715b75afe9962d87582bee70b42c8671c255f8fe6/scikit_image-0.21.0-cp39-cp39-win_amd64.whl", hash = "sha256:9cffcddd2a5594c0a06de2ae3e1e25d662745a26f94fda31520593669677c010"},
+    {url = "https://files.pythonhosted.org/packages/33/29/1d696450464d6e13358d3ef185a1fb14a11181c5dab1eb2837c02be86373/scikit_image-0.21.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:2b0d6ed6502cca0c9719c444caafa0b8cda0f9e29e01ca42f621a240073284be"},
+    {url = "https://files.pythonhosted.org/packages/35/e4/d5d1574d09f30a4df757edf4213ce8e764aebe0f1642475cf384f9fa33bb/scikit_image-0.21.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:4e1b09f81a99c9c390215929194847b3cd358550b4b65bb6e42c5393d69cb74a"},
+    {url = "https://files.pythonhosted.org/packages/62/9b/8fd51371f3fd4ce06092d1f4740ec5a874a996727117e076c03755e8c777/scikit_image-0.21.0-cp38-cp38-macosx_12_0_arm64.whl", hash = "sha256:9f7b5fb4a22f0d5ae0fa13beeb887c925280590145cd6d8b2630794d120ff7c7"},
+    {url = "https://files.pythonhosted.org/packages/70/a9/a9f63dde69ac5a4451d8a0ebdde95824ec31aafcae1c77658a9058e27bb7/scikit_image-0.21.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c6c12925ceb9f3aede555921e26642d601b2d37d1617002a2636f2cb5178ae2f"},
+    {url = "https://files.pythonhosted.org/packages/ac/96/6a64d241498380dc5f0dca8e48981cd610d31d661a59f90d5ac242546906/scikit_image-0.21.0-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:54df1ddc854f37a912d42bc724e456e86858107e94048a81a27720bc588f9937"},
+    {url = "https://files.pythonhosted.org/packages/c4/09/0b465a48f9bc7e848538f82e62811978932132b1edd50da758a9243cef5a/scikit_image-0.21.0-cp39-cp39-macosx_12_0_arm64.whl", hash = "sha256:c01e3ab0a1fabfd8ce30686d4401b7ed36e6126c9d4d05cb94abf6bdc46f7ac9"},
+    {url = "https://files.pythonhosted.org/packages/cb/a1/6bc36ba38fe9312271cce46cf2025fcc63be096131747a8f41522a57aaef/scikit_image-0.21.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:978ac3302252155a8556cdfe067bad2d18d5ccef4e91c2f727bc564ed75566bc"},
+    {url = "https://files.pythonhosted.org/packages/d7/d1/a4c715ad640c9eb0daaa77c4ce561b06e086bec44cbc79083e3548b00b76/scikit_image-0.21.0-cp38-cp38-win_amd64.whl", hash = "sha256:9194cb7bc21215fde6c1b1e9685d312d2aa8f65ea9736bc6311126a91c860032"},
+    {url = "https://files.pythonhosted.org/packages/e0/f7/0ec3a2fbed785259176eb2eee7b254fc68c653028907602231cc8ba09da0/scikit_image-0.21.0-cp310-cp310-macosx_12_0_arm64.whl", hash = "sha256:82c22e008527e5ee26ab08e3ce919998ef164d538ff30b9e5764b223cfda06b1"},
+    {url = "https://files.pythonhosted.org/packages/ee/5b/3fe767d6ef7cbcf4894355e5905665f99237c5de465a8ca959a05d2320bc/scikit_image-0.21.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:fd29d2631d3e975c377066acfc1f4cb2cc95e2257cf70e7fedfcb96441096e88"},
+    {url = "https://files.pythonhosted.org/packages/f3/93/65601f7577d6fd49ec23bf8fb58c04d8170b06a1544452ae2ea9f59bf11f/scikit_image-0.21.0-cp310-cp310-win_amd64.whl", hash = "sha256:1f538d4de77e4f3225d068d9ea2965bed3f7dda7f457a8f89634fa22ffb9ad8c"},
+    {url = "https://files.pythonhosted.org/packages/fa/2b/ffecc6f29b48d1d46dc3bb7b4c908490260c3a0d69ac2d248d846b90d505/scikit_image-0.21.0-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:d4814033717f0b6491fee252facb9df92058d6a72ab78dd6408a50f3915a88b8"},
 ]
 "scipy 1.10.1" = [
     {url = "https://files.pythonhosted.org/packages/04/0b/a1b119c869b79a2ab459b7f9fd7e2dea75a9c7d432e64e915e75586bd00b/scipy-1.10.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:1553b5dcddd64ba9a0d95355e63fe6c3fc303a8fd77c7bc91e77d61363f7433f"},
@@ -1410,6 +1519,10 @@ content_hash = "sha256:feac78618d92f3b8f93f3937090b30ceece44bc91cb6c40446e0374e4
 ]
 "tf2onnx 1.14.0" = [
     {url = "https://files.pythonhosted.org/packages/67/de/debad55cb4454d1117b58029c44c04cb993c29b8317d2d609178dbce4a72/tf2onnx-1.14.0-py3-none-any.whl", hash = "sha256:a9721a38020260e5ee9d6396295edbbfcaedd22c07cfd6f2cda2698defde9b63"},
+]
+"tifffile 2023.4.12" = [
+    {url = "https://files.pythonhosted.org/packages/45/d6/79979cbf9a1d6e4bd3e36c619114e5c9d22d7c34cdecac3e17b41869273c/tifffile-2023.4.12.tar.gz", hash = "sha256:2fa99f9890caab919d932a0acaa9d0f5843dc2ef3594e212963932e20713badd"},
+    {url = "https://files.pythonhosted.org/packages/93/86/2ed10947a1891ceb86b084153fac06877fdec38a5ed69bd9286eefab3d44/tifffile-2023.4.12-py3-none-any.whl", hash = "sha256:3161954746fe32c4f4244d0fb2eb0a272f3a3760b78882a42faa83ac5e6e0b74"},
 ]
 "typing-extensions 4.6.3" = [
     {url = "https://files.pythonhosted.org/packages/42/56/cfaa7a5281734dadc842f3a22e50447c675a1c5a5b9f6ad8a07b467bffe7/typing_extensions-4.6.3.tar.gz", hash = "sha256:d91d5919357fe7f681a9f2b5b4cb2a5f1ef0a1e9f59c4d8ff0d3491e05c0ffd5"},
