@@ -22,8 +22,7 @@ RUN pdm run generate-onnx.py
 
 FROM base
 
-RUN apt-get update && apt-get install -y git cmake g++
-RUN OCOS_NO_OPENCV=1 pdm sync -G server && pdm cache clear
+RUN pdm sync -G server && pdm cache clear
 
 ADD ./DeepCreamPy ./DeepCreamPy
 COPY --from=builder ./vendor/ ./vendor/
