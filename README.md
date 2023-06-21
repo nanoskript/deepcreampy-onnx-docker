@@ -2,6 +2,7 @@
 
 [Docker Hub](https://hub.docker.com/r/nanoskript/deepcreampy)
 | [API documentation](https://deepcreampy.nanoskript.dev/docs)
+| [Comprehensive post](https://nanoskript.dev/posts/making-deepcreampy-2.6x-faster-with-onnx-and-model-surgery/)
 
 ONNX model and Docker service for DeepCreamPy.
 
